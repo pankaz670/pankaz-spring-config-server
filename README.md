@@ -1,0 +1,1 @@
+# pankaz-spring-config-server
