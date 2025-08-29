@@ -1,0 +1,33 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/pankaz670/spring-backend-configurations
+          # If the repo is private, add credentials:
+          # username: your-username
+          # password: your-password-or-personal-access-token
+          clone-on-start: true
+        vault:
+          host: localhost
+          port: 8200
+          scheme: http
+          backend: secret
+          default-key: application
+          profile-separator: '/'
+          kv-version: 2
+    vault:
+      authentication: TOKEN
+      token: your-vault-token
+      uri: http://localhost:8200
+  profiles:
+    active: git,vault
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
